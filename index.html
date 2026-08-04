@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Present Simple Ultimate - Mr. Ayman Kamel</title>
+
+    <!-- إعدادات مشاركة الرابط على السوشيال ميديا والواتساب -->
+    <meta property="og:title" content="⭐ Present Simple Ultimate ⭐">
+    <meta property="og:description" content="تحدى نفسك في هذا الاختبار الشامل! 50 سؤالاً ممتعاً في قواعد اللغة الإنجليزية مع مستر أيمن كامل.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Mr. Ayman Kamel English Educator">
+    
+    <!-- إعدادات تويتر -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="⭐ Present Simple Ultimate ⭐">
+    <meta name="twitter:description" content="تحدى نفسك في هذا الاختبار الشامل! 50 سؤالاً ممتعاً في قواعد اللغة الإنجليزية.">
+
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Readex+Pro:wght@500;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -128,7 +140,11 @@
         .cheer-bubble { position: fixed; bottom: -100px; right: 20px; background: #ffffff; border: 3px solid var(--accent-yellow); border-radius: 25px 25px 0 25px; padding: 15px; display: flex; align-items: center; gap: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 999; transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); direction: rtl; }
         .cheer-bubble.show { bottom: 25px; }
         .cheer-bubble img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--border-color); background: #fff;}
-        .cheer-text { font-size: 15px; font-weight: 800; color: #0f172a; }
+        .cheer-text { display: flex; flex-direction: column; gap: 5px; font-size: 14px; font-weight: 800; color: #0f172a; }
+        
+        /* تنسيق العبارات التشجيعية */
+        .cheer-en { direction: ltr; text-align: left; }
+        .cheer-ar { direction: rtl; text-align: right; border-top: 1px dashed #94a3b8; padding-top: 5px; color: #4338ca; }
 
         .golden-avatar { filter: drop-shadow(0 0 10px #facc15) contrast(1.3); animation: goldPulse 1s infinite alternate; }
         @keyframes goldPulse { 0% { filter: drop-shadow(0 0 5px #facc15); transform: scale(1) translateX(-50%); } 100% { filter: drop-shadow(0 0 20px #facc15); transform: scale(1.1) translateX(-45%); } }
@@ -153,7 +169,10 @@
         .review-item.is-correct { border-left: 10px solid #10b981; }
         .review-item.is-wrong { border-left: 10px solid #f43f5e; }
         
-        .explanation-box { background: #fef08a; border-radius: 12px; padding: 12px; margin-top: 10px; font-size: 14px; color: #0f172a; direction: rtl; text-align: right; border: 2px solid var(--border-color); font-weight: 600; }
+        /* تنسيق صندوق التفسير ثنائي اللغة */
+        .explanation-box { background: #fef08a; border-radius: 12px; padding: 12px; margin-top: 10px; font-size: 14px; border: 2px solid var(--border-color); font-weight: 600; display: flex; flex-direction: column; gap: 8px; }
+        .explanation-box .exp-en { direction: ltr; text-align: left; color: #0f172a; }
+        .explanation-box .exp-ar { direction: rtl; text-align: right; color: #c2410c; border-top: 1px dashed #b45309; padding-top: 8px; font-weight: 800; }
         
         #cert-btn { background: #facc15; color: #0f172a; width: 100%; display: none; animation: pulse 1.5s infinite; border-color: #0f172a; }
     </style>
@@ -227,7 +246,7 @@
             </div>
 
             <div class="action-btns">
-                <button class="btn btn-prev" id="prev-btn" onclick="prevQuestion()" disabled>السابق</button>
+                <button class="btn btn-prev" id="prev-btn" onclick="prevQuestion()" disabled>⬅ السابق</button>
                 <button class="btn btn-next" id="next-btn" onclick="nextQuestion()">التالي ➔</button>
                 <button class="btn btn-primary" id="submit-btn" onclick="confirmSubmit()" style="display: none; width: auto;">إنهاء التحدي 🏁</button>
             </div>
@@ -408,71 +427,72 @@ function triggerEasterEgg() {
 }
 
 const cheers = [
-    "أنا فخور بك جداً يا بطل! 🌟",
-    "استمر يا بطل، أنت تقترب من القمة! 🚀",
-    "أداؤك مذهل اليوم! واصل التقدم 🤩",
-    "لا تستسلم، القمة بانتظارك! 🏆",
-    "إجاباتك تدل على عبقريتك! 💪"
+    `<div class="cheer-en">🎉 Awesome! Keep pushing forward! 🤩</div><div class="cheer-ar">أنا فخور بك جداً يا بطل! 🌟</div>`,
+    `<div class="cheer-en">🚀 Brilliant! On to the next challenge! 😎</div><div class="cheer-ar">استمر يا بطل، أنت تقترب من القمة! 🚀</div>`,
+    `<div class="cheer-en">🔥 Unstoppable! Keep going! 🥳</div><div class="cheer-ar">أداؤك مذهل اليوم! واصل التقدم 🤩</div>`,
+    `<div class="cheer-en">⭐ Fantastic focus, champion! 🦸‍♂️</div><div class="cheer-ar">لا تستسلم، القمة بانتظارك! 🏆</div>`,
+    `<div class="cheer-en">💪 Incredible energy! 🦊</div><div class="cheer-ar">إجاباتك تدل على عبقريتك! 💪</div>`
 ];
+
 function triggerTeacherCheer() {
     const bubble = document.getElementById("cheer-bubble");
     const text = document.getElementById("cheer-text");
-    text.innerText = cheers[Math.floor(Math.random() * cheers.length)];
+    text.innerHTML = cheers[Math.floor(Math.random() * cheers.length)];
     bubble.classList.add("show");
     setTimeout(() => { bubble.classList.remove("show"); }, 4000);
 }
 
 const rawData = [
-    { q: "1. She ______ milk every morning.", options: ["drink", "drinks", "drank", "drinking"], answer: 1, exp: "مع الضمير She نضيف (s)." },
-    { q: "2. They ______ football on Fridays.", options: ["plays", "playing", "play", "played"], answer: 2, exp: "مع They الفعل في المصدر." },
-    { q: "3. He ______ like ice cream.", options: ["don't", "doesn't", "isn't", "aren't"], answer: 1, exp: "النفي مع He بـ doesn't." },
-    { q: "4. We ______ not live in London.", options: ["do", "does", "is", "are"], answer: 0, exp: "النفي مع We بـ do." },
-    { q: "5. ______ you play tennis?", options: ["Does", "Do", "Is", "Are"], answer: 1, exp: "السؤال مع you بـ Do." },
-    { q: "6. ______ she speak English?", options: ["Do", "Does", "Is", "Are"], answer: 1, exp: "السؤال مع She بـ Does." },
-    { q: "7. The sun ______ in the east.", options: ["rise", "rises", "rising", "rose"], answer: 1, exp: "حقيقة علمية لمفرد نضيف (s)." },
-    { q: "8. I always ______ my homework after school.", options: ["do", "does", "did", "doing"], answer: 0, exp: "مع I الفعل في المصدر." },
-    { q: "9. My teacher ______ us English.", options: ["teach", "teaches", "taught", "teaching"], answer: 1, exp: "المفرد المنتهي بـ ch نضيف es." },
-    { q: "10. Cats ______ fish.", options: ["likes", "liking", "like", "liked"], answer: 2, exp: "الجمع يأخذ المصدر." },
-    { q: "11. Ahmed ______ to school by bus every day.", options: ["go", "goes", "went", "going"], answer: 1, exp: "مفرد غائب نضيف es." },
-    { q: "12. My friends ______ very kind.", options: ["is", "are", "am", "be"], answer: 1, exp: "Verb to be للجمع هو are." },
-    { q: "13. Mona ______ not watch TV in the afternoon.", options: ["do", "does", "did", "is"], answer: 1, exp: "النفي للمفرد بـ does." },
-    { q: "14. Where ______ you live?", options: ["does", "do", "is", "are"], answer: 1, exp: "السؤال للمكان مع you بـ do." },
-    { q: "15. What time ______ he get up?", options: ["do", "does", "is", "are"], answer: 1, exp: "السؤال مع he بـ does." },
-    { q: "16. Birds ______ in the sky.", options: ["fly", "flies", "flew", "flying"], answer: 0, exp: "الجمع يأخذ المصدر." },
-    { q: "17. My father ______ a nice car.", options: ["have", "has", "having", "had"], answer: 1, exp: "فعل الملكية للمفرد has." },
-    { q: "18. We ______ never late for school.", options: ["is", "am", "are", "was"], answer: 2, exp: "الجمع We يأخذ are." },
-    { q: "19. She ______ her mother in the kitchen.", options: ["help", "helps", "helped", "helping"], answer: 1, exp: "المفرد she نضيف s." },
-    { q: "20. ______ it rain a lot in winter?", options: ["Do", "Does", "Is", "Are"], answer: 1, exp: "السؤال لغير العاقل بـ Does." },
-    { q: "21. I ______ (be) a student.", options: ["am", "is", "are", "be"], answer: 0, exp: "I تأخذ am." },
-    { q: "22. Lions ______ meat.", options: ["eat", "eats", "eating", "ate"], answer: 0, exp: "الجمع يأخذ المصدر." },
-    { q: "23. He ______ his teeth twice a day.", options: ["brush", "brushes", "brushing", "brushed"], answer: 1, exp: "ينتهي بـ sh نضيف es." },
-    { q: "24. Do you ______ coffee?", options: ["likes", "like", "liking", "liked"], answer: 1, exp: "بعد Do يعود الفعل للمصدر." },
-    { q: "25. Does she ______ in Cairo?", options: ["live", "lives", "living", "lived"], answer: 0, exp: "بعد Does يعود الفعل للمصدر." },
-    { q: "26. Water ______ at 100°C.", options: ["boil", "boils", "boiling", "boiled"], answer: 1, exp: "حقيقة لغير معدود نضيف s." },
-    { q: "27. They don't ______ early on Sundays.", options: ["wakes up", "wake up", "waking up", "woke up"], answer: 1, exp: "بعد don't مصدر." },
-    { q: "28. My sister ______ French.", options: ["study", "studies", "studying", "studied"], answer: 1, exp: "تحذف y ونضيف ies." },
-    { q: "29. The train ______ at 8:00 AM.", options: ["leave", "leaves", "leaving", "left"], answer: 1, exp: "جدول مواعيد ثابت للمفرد." },
-    { q: "30. ______ they go to the gym?", options: ["Does", "Do", "Is", "Are"], answer: 1, exp: "السؤال للجمع بـ Do." },
-    { q: "31. A nurse ______ in a hospital.", options: ["work", "works", "working", "worked"], answer: 1, exp: "وظيفة لمفرد نضيف s." },
-    { q: "32. We don't ______ video games on weekdays.", options: ["play", "plays", "playing", "played"], answer: 0, exp: "بعد النفي مصدر." },
-    { q: "33. ______ your mother cook well?", options: ["Do", "Does", "Is", "Are"], answer: 1, exp: "سؤال لمفرد بـ Does." },
-    { q: "34. Elephants ______ big ears.", options: ["has", "have", "having", "had"], answer: 1, exp: "ملكية للجمع have." },
-    { q: "35. He usually ______ comics.", options: ["read", "reads", "reading", "readed"], answer: 1, exp: "عادة لمفرد نضيف s." },
-    { q: "36. I don't ______ the answer.", options: ["know", "knows", "knowing", "knew"], answer: 0, exp: "مصدر بعد don't." },
-    { q: "37. She always ______ a smile.", options: ["wear", "wears", "wearing", "wore"], answer: 1, exp: "عادة لمفرد s." },
-    { q: "38. The Earth ______ round the Sun.", options: ["go", "goes", "going", "went"], answer: 1, exp: "حقيقة للمفرد goes." },
-    { q: "39. ______ he have a bike?", options: ["Do", "Does", "Is", "Has"], answer: 1, exp: "سؤال ملكية للمفرد بـ Does." },
-    { q: "40. Dogs ______ at strangers.", options: ["bark", "barks", "barking", "barked"], answer: 0, exp: "الجمع يأخذ مصدر." },
-    { q: "41. Ali ______ his car every Sunday.", options: ["wash", "washes", "washing", "washed"], answer: 1, exp: "مفرد مع sh نضيف es." },
-    { q: "42. They ______ not work on Saturdays.", options: ["do", "does", "is", "are"], answer: 0, exp: "النفي للجمع do." },
-    { q: "43. ______ Sarah like music?", options: ["Do", "Does", "Is", "Are"], answer: 1, exp: "سؤال لمفرد بـ Does." },
-    { q: "44. You ______ very fast.", options: ["run", "runs", "running", "ran"], answer: 0, exp: "مع You مصدر." },
-    { q: "45. My uncle ______ in Dubai.", options: ["live", "lives", "living", "lived"], answer: 1, exp: "مفرد للإقامة الدائمة s." },
-    { q: "46. It ______ a lot here in autumn.", options: ["rain", "rains", "raining", "rained"], answer: 1, exp: "غير عاقل مفرد s." },
-    { q: "47. We ______ happy to see you.", options: ["am", "is", "are", "be"], answer: 2, exp: "الجمع يأخذ are." },
-    { q: "48. He doesn't ______ fast food.", options: ["eat", "eats", "eating", "ate"], answer: 0, exp: "بعد doesn't مصدر." },
-    { q: "49. ______ you know Mr. Ayman?", options: ["Does", "Do", "Is", "Are"], answer: 1, exp: "السؤال مع You بـ Do." },
-    { q: "50. She ______ her room every day.", options: ["clean", "cleans", "cleaning", "cleaned"], answer: 1, exp: "حدث يومي للمفرد s." }
+    { q: "1. She ______ milk every morning.", options: ["drink", "drinks", "drank", "drinking"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> With third-person singular (She), we add (s) to the verb.</div><div class='exp-ar'>✨ <b>بالعربي:</b> مع الضمير She نضيف (s).</div>" },
+    { q: "2. They ______ football on Fridays.", options: ["plays", "playing", "play", "played"], answer: 2, exp: "<div class='exp-en'>💡 <b>Explanation:</b> With plural subjects (They), we use the base verb.</div><div class='exp-ar'>✨ <b>بالعربي:</b> مع They الفعل في المصدر.</div>" },
+    { q: "3. He ______ like ice cream.", options: ["don't", "doesn't", "isn't", "aren't"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> We use 'doesn't' for negative sentences with (He).</div><div class='exp-ar'>✨ <b>بالعربي:</b> النفي مع He بـ doesn't.</div>" },
+    { q: "4. We ______ not live in London.", options: ["do", "does", "is", "are"], answer: 0, exp: "<div class='exp-en'>💡 <b>Explanation:</b> We use 'do not / don't' for negative sentences with (We).</div><div class='exp-ar'>✨ <b>بالعربي:</b> النفي مع We بـ do.</div>" },
+    { q: "5. ______ you play tennis?", options: ["Does", "Do", "Is", "Are"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> Questions with (you) start with 'Do'.</div><div class='exp-ar'>✨ <b>بالعربي:</b> السؤال مع you بـ Do.</div>" },
+    { q: "6. ______ she speak English?", options: ["Do", "Does", "Is", "Are"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> Questions with singular subjects (she) start with 'Does'.</div><div class='exp-ar'>✨ <b>بالعربي:</b> السؤال مع She بـ Does.</div>" },
+    { q: "7. The sun ______ in the east.", options: ["rise", "rises", "rising", "rose"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> Scientific facts use Present Simple. The singular subject takes (s).</div><div class='exp-ar'>✨ <b>بالعربي:</b> حقيقة علمية لمفرد نضيف (s).</div>" },
+    { q: "8. I always ______ my homework after school.", options: ["do", "does", "did", "doing"], answer: 0, exp: "<div class='exp-en'>💡 <b>Explanation:</b> With the pronoun (I), we use the base verb.</div><div class='exp-ar'>✨ <b>بالعربي:</b> مع I الفعل في المصدر.</div>" },
+    { q: "9. My teacher ______ us English.", options: ["teach", "teaches", "taught", "teaching"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> For a singular subject, verbs ending in (ch) take (es).</div><div class='exp-ar'>✨ <b>بالعربي:</b> المفرد المنتهي بـ ch نضيف es.</div>" },
+    { q: "10. Cats ______ fish.", options: ["likes", "liking", "like", "liked"], answer: 2, exp: "<div class='exp-en'>💡 <b>Explanation:</b> Plural subjects take the base verb.</div><div class='exp-ar'>✨ <b>بالعربي:</b> الجمع يأخذ المصدر.</div>" },
+    { q: "11. Ahmed ______ to school by bus every day.", options: ["go", "goes", "went", "going"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> For a singular subject, verbs ending in (o) take (es).</div><div class='exp-ar'>✨ <b>بالعربي:</b> مفرد غائب نضيف es.</div>" },
+    { q: "12. My friends ______ very kind.", options: ["is", "are", "am", "be"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> The plural form of verb 'to be' is (are).</div><div class='exp-ar'>✨ <b>بالعربي:</b> Verb to be للجمع هو are.</div>" },
+    { q: "13. Mona ______ not watch TV in the afternoon.", options: ["do", "does", "did", "is"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> We use 'does' for negative sentences with singular subjects.</div><div class='exp-ar'>✨ <b>بالعربي:</b> النفي للمفرد بـ does.</div>" },
+    { q: "14. Where ______ you live?", options: ["does", "do", "is", "are"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> In Wh- questions with (you), we use the helping verb 'do'.</div><div class='exp-ar'>✨ <b>بالعربي:</b> السؤال للمكان مع you بـ do.</div>" },
+    { q: "15. What time ______ he get up?", options: ["do", "does", "is", "are"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> In questions with (he), we use the helping verb 'does'.</div><div class='exp-ar'>✨ <b>بالعربي:</b> السؤال مع he بـ does.</div>" },
+    { q: "16. Birds ______ in the sky.", options: ["fly", "flies", "flew", "flying"], answer: 0, exp: "<div class='exp-en'>💡 <b>Explanation:</b> Plural subjects take the base verb.</div><div class='exp-ar'>✨ <b>بالعربي:</b> الجمع يأخذ المصدر.</div>" },
+    { q: "17. My father ______ a nice car.", options: ["have", "has", "having", "had"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> The singular form of verb 'to have' is (has).</div><div class='exp-ar'>✨ <b>بالعربي:</b> فعل الملكية للمفرد has.</div>" },
+    { q: "18. We never ______ late for school.", options: ["is", "am", "are", "was"], answer: 2, exp: "<div class='exp-en'>💡 <b>Explanation:</b> The pronoun (We) takes the verb 'are'.</div><div class='exp-ar'>✨ <b>بالعربي:</b> الجمع We يأخذ are.</div>" },
+    { q: "19. She ______ her mother in the kitchen.", options: ["help", "helps", "helped", "helping"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> With singular pronouns like (She), we add (s) to the verb.</div><div class='exp-ar'>✨ <b>بالعربي:</b> المفرد she نضيف s.</div>" },
+    { q: "20. ______ it rain a lot in winter?", options: ["Do", "Does", "Is", "Are"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> We use 'Does' to ask questions with the pronoun (It).</div><div class='exp-ar'>✨ <b>بالعربي:</b> السؤال لغير العاقل بـ Does.</div>" },
+    { q: "21. I ______ (be) a student.", options: ["am", "is", "are", "be"], answer: 0, exp: "<div class='exp-en'>💡 <b>Explanation:</b> The pronoun (I) always takes 'am'.</div><div class='exp-ar'>✨ <b>بالعربي:</b> I تأخذ am.</div>" },
+    { q: "22. Lions ______ meat.", options: ["eat", "eats", "eating", "ate"], answer: 0, exp: "<div class='exp-en'>💡 <b>Explanation:</b> Plural subjects take the base verb.</div><div class='exp-ar'>✨ <b>بالعربي:</b> الجمع يأخذ المصدر.</div>" },
+    { q: "23. He ______ his teeth twice a day.", options: ["brush", "brushes", "brushing", "brushed"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> For a singular subject, verbs ending in (sh) take (es).</div><div class='exp-ar'>✨ <b>بالعربي:</b> ينتهي بـ sh نضيف es.</div>" },
+    { q: "24. Do you ______ coffee?", options: ["likes", "like", "liking", "liked"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> After 'Do', we always use the verb in its base form.</div><div class='exp-ar'>✨ <b>بالعربي:</b> بعد Do يعود الفعل للمصدر.</div>" },
+    { q: "25. Does she ______ in Cairo?", options: ["live", "lives", "living", "lived"], answer: 0, exp: "<div class='exp-en'>💡 <b>Explanation:</b> After 'Does', we always use the verb in its base form.</div><div class='exp-ar'>✨ <b>بالعربي:</b> بعد Does يعود الفعل للمصدر.</div>" },
+    { q: "26. Water ______ at 100°C.", options: ["boil", "boils", "boiling", "boiled"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> Uncountable nouns are treated as singular in facts. We add (s).</div><div class='exp-ar'>✨ <b>بالعربي:</b> حقيقة لغير معدود نضيف s.</div>" },
+    { q: "27. They don't ______ early on Sundays.", options: ["wakes up", "wake up", "waking up", "woke up"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> After 'don't', we use the base verb.</div><div class='exp-ar'>✨ <b>بالعربي:</b> بعد don't مصدر.</div>" },
+    { q: "28. My sister ______ French.", options: ["study", "studies", "studying", "studied"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> For verbs ending in consonant + (y) with a singular subject, drop (y) and add (ies).</div><div class='exp-ar'>✨ <b>بالعربي:</b> تحذف y ونضيف ies.</div>" },
+    { q: "29. The train ______ at 8:00 AM.", options: ["leave", "leaves", "leaving", "left"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> For fixed schedules (timetables), we use Present Simple.</div><div class='exp-ar'>✨ <b>بالعربي:</b> جدول مواعيد ثابت للمفرد.</div>" },
+    { q: "30. ______ they go to the gym?", options: ["Does", "Do", "Is", "Are"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> Questions with plural subjects start with 'Do'.</div><div class='exp-ar'>✨ <b>بالعربي:</b> السؤال للجمع بـ Do.</div>" },
+    { q: "31. A nurse ______ in a hospital.", options: ["work", "works", "working", "worked"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> A singular subject takes a verb with (s).</div><div class='exp-ar'>✨ <b>بالعربي:</b> وظيفة لمفرد نضيف s.</div>" },
+    { q: "32. We don't ______ video games on weekdays.", options: ["play", "plays", "playing", "played"], answer: 0, exp: "<div class='exp-en'>💡 <b>Explanation:</b> After 'don't', we use the base verb.</div><div class='exp-ar'>✨ <b>بالعربي:</b> بعد النفي مصدر.</div>" },
+    { q: "33. ______ your mother cook well?", options: ["Do", "Does", "Is", "Are"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> Questions with singular subjects start with 'Does'.</div><div class='exp-ar'>✨ <b>بالعربي:</b> سؤال لمفرد بـ Does.</div>" },
+    { q: "34. Elephants ______ big ears.", options: ["has", "have", "having", "had"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> Plural subjects take 'have'.</div><div class='exp-ar'>✨ <b>بالعربي:</b> ملكية للجمع have.</div>" },
+    { q: "35. He usually ______ comics.", options: ["read", "reads", "reading", "readed"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> For habits with a singular subject, add (s) to the verb.</div><div class='exp-ar'>✨ <b>بالعربي:</b> عادة لمفرد نضيف s.</div>" },
+    { q: "36. I don't ______ the answer.", options: ["know", "knows", "knowing", "knew"], answer: 0, exp: "<div class='exp-en'>💡 <b>Explanation:</b> After 'don't', we use the base verb.</div><div class='exp-ar'>✨ <b>بالعربي:</b> مصدر بعد don't.</div>" },
+    { q: "37. She always ______ a smile.", options: ["wear", "wears", "wearing", "wore"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> For habits with a singular subject, add (s) to the verb.</div><div class='exp-ar'>✨ <b>بالعربي:</b> عادة لمفرد s.</div>" },
+    { q: "38. The Earth ______ round the Sun.", options: ["go", "goes", "going", "went"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> Scientific facts use Present Simple. The singular subject takes (es).</div><div class='exp-ar'>✨ <b>بالعربي:</b> حقيقة للمفرد goes.</div>" },
+    { q: "39. ______ he have a bike?", options: ["Do", "Does", "Is", "Has"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> Questions with singular subjects (he) take 'Does'. Note: 'have' stays in base form.</div><div class='exp-ar'>✨ <b>بالعربي:</b> سؤال ملكية للمفرد بـ Does.</div>" },
+    { q: "40. Dogs ______ at strangers.", options: ["bark", "barks", "barking", "barked"], answer: 0, exp: "<div class='exp-en'>💡 <b>Explanation:</b> Plural subjects take the base verb.</div><div class='exp-ar'>✨ <b>بالعربي:</b> الجمع يأخذ مصدر.</div>" },
+    { q: "41. Ali ______ his car every Sunday.", options: ["wash", "washes", "washing", "washed"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> For a singular subject, verbs ending in (sh) take (es).</div><div class='exp-ar'>✨ <b>بالعربي:</b> مفرد مع sh نضيف es.</div>" },
+    { q: "42. They ______ not work on Saturdays.", options: ["do", "does", "is", "are"], answer: 0, exp: "<div class='exp-en'>💡 <b>Explanation:</b> We use 'do' + not for negative sentences with plural subjects (They).</div><div class='exp-ar'>✨ <b>بالعربي:</b> النفي للجمع do.</div>" },
+    { q: "43. ______ Sarah like music?", options: ["Do", "Does", "Is", "Are"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> Questions with singular subjects start with 'Does'.</div><div class='exp-ar'>✨ <b>بالعربي:</b> سؤال لمفرد بـ Does.</div>" },
+    { q: "44. You ______ very fast.", options: ["run", "runs", "running", "ran"], answer: 0, exp: "<div class='exp-en'>💡 <b>Explanation:</b> The pronoun (You) takes the base verb.</div><div class='exp-ar'>✨ <b>بالعربي:</b> مع You مصدر.</div>" },
+    { q: "45. My uncle ______ in Dubai.", options: ["live", "lives", "living", "lived"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> For permanent situations, we use Present Simple.</div><div class='exp-ar'>✨ <b>بالعربي:</b> مفرد للإقامة الدائمة s.</div>" },
+    { q: "46. It ______ a lot here in autumn.", options: ["rain", "rains", "raining", "rained"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> The singular pronoun (It) takes a verb with (s).</div><div class='exp-ar'>✨ <b>بالعربي:</b> غير عاقل مفرد s.</div>" },
+    { q: "47. We ______ happy to see you.", options: ["am", "is", "are", "be"], answer: 2, exp: "<div class='exp-en'>💡 <b>Explanation:</b> The plural pronoun (We) takes 'are'.</div><div class='exp-ar'>✨ <b>بالعربي:</b> الجمع يأخذ are.</div>" },
+    { q: "48. He doesn't ______ fast food.", options: ["eat", "eats", "eating", "ate"], answer: 0, exp: "<div class='exp-en'>💡 <b>Explanation:</b> After 'doesn't', we always use the base verb.</div><div class='exp-ar'>✨ <b>بالعربي:</b> بعد doesn't مصدر.</div>" },
+    { q: "49. ______ you know Mr. Ayman?", options: ["Does", "Do", "Is", "Are"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> Questions with (you) start with 'Do'.</div><div class='exp-ar'>✨ <b>بالعربي:</b> السؤال مع You بـ Do.</div>" },
+    { q: "50. She ______ her room every day.", options: ["clean", "cleans", "cleaning", "cleaned"], answer: 1, exp: "<div class='exp-en'>💡 <b>Explanation:</b> For daily routines with a singular subject, we add (s) to the verb.</div><div class='exp-ar'>✨ <b>بالعربي:</b> حدث يومي للمفرد s.</div>" }
 ];
 
 let quizData = [], currentQuestion = 0, userAnswers = {}, studentName = "", selectedAvatar = '👦';
@@ -582,7 +602,7 @@ function loadQuestion() {
         const div = document.createElement("div");
         div.className = "option-item";
         if (userAnswers[currentQuestion] === oIndex) div.classList.add("selected");
-        div.innerHTML = `<span><b>${String.fromCharCode(65 + oIndex)}.</b> ${opt}</span>`;
+        div.innerHTML = `<span style="direction: ltr; display: inline-block;"><b>${String.fromCharCode(65 + oIndex)}.</b> ${opt}</span>`;
         div.onclick = (e) => selectOption(oIndex, e);
         optionsList.appendChild(div);
     });
@@ -677,10 +697,10 @@ function calculateScore() {
 
         const div = document.createElement("div");
         div.className = `review-item ${isCorrect ? 'is-correct' : 'is-wrong'}`;
-        div.innerHTML = `<div style="font-weight:800;font-size:17px;margin-bottom:8px;">${item.q}</div>
-            <div>إجابتك: <b style="color:${isCorrect?'#10b981':'#f43f5e'};">${userOptText}</b></div>
-            ${!isCorrect ? `<div style="color:#10b981;font-weight:800;margin-top:4px;">الصحيحة: ${correctOpt}</div>` : ''}
-            <div class="explanation-box">💡 <b>التفسير:</b> ${item.exp}</div>`;
+        div.innerHTML = `<div style="font-weight:800;font-size:17px;margin-bottom:8px; direction: ltr;">${item.q}</div>
+            <div style="direction: rtl;">إجابتك: <b style="color:${isCorrect?'#10b981':'#f43f5e'}; direction: ltr; display: inline-block;">${userOptText}</b></div>
+            ${!isCorrect ? `<div style="color:#10b981;font-weight:800;margin-top:4px; direction: rtl;">الإجابة الصحيحة: <span style="direction: ltr; display: inline-block;">${correctOpt}</span></div>` : ''}
+            <div class="explanation-box">${item.exp}</div>`;
         reviewList.appendChild(div);
     });
 
@@ -713,15 +733,19 @@ function calculateScore() {
 
     if(typeof emailjs !== 'undefined') {
         emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-            student_name: `${selectedAvatar} ${studentName}`, score: `${score}/50`, percentage: `${percent}%`, date_time: new Date().toLocaleString('ar-EG')
+            quiz_name: "Present Simple Ultimate",
+            student_name: `${selectedAvatar} ${studentName}`, 
+            score: `${score}/50`, 
+            percentage: `${percent}%`, 
+            date_time: new Date().toLocaleString('ar-EG')
         });
     }
     if (percent >= 80 && typeof confetti === 'function') confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
 }
 
 function shareToWhatsApp() {
-    let mode = isTimeAttack ? "🔥 في وضع الموت المفاجئ " : "";
-    let txt = `🎉 مستر أيمن، لقد أنهيت التحدي الأسطوري${mode}!\n👤 البطل: ${selectedAvatar} ${studentName}\n📊 النتيجة: ${finalScore}/50 (${finalPercent}%)\nشكراً لك! 🚀`;
+    let mode = isTimeAttack ? " (وضع الموت المفاجئ 🔥)" : "";
+    let txt = `📚 Present Simple Ultimate\n👤 البطل: ${selectedAvatar} ${studentName}\n📊 النتيجة: ${finalScore}/50 (${finalPercent}%)${mode}\n✨ شكراً لك يا مستر أيمن! 🚀`;
     window.open(`https://wa.me/201284749899?text=${encodeURIComponent(txt)}`, '_blank');
 }
 
