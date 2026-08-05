@@ -81,7 +81,6 @@
         .control-btn { background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.4); color: #fff; width: 38px; height: 38px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 16px; backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; }
         .control-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-1px); }
 
-        /* 🌟 تنسيق شريط التوقيت الجديد وزر الإخفاء 🌟 */
         .timer-container { position: absolute; top: 15px; right: 15px; display: flex; align-items: center; gap: 6px; z-index: 10; direction: ltr; }
         
         .timer-box { background: #ffedd5; border: 2px solid var(--border-color); color: #c2410c; padding: 0 12px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-weight: 800; font-size: 14px; transition: background 0.2s; letter-spacing: 0.5px; }
@@ -208,8 +207,7 @@
             <button class="control-btn" onclick="toggleMusic()" title="موسيقى التركيز">🎵</button>
         </div>
         
-        <!-- 🌟 التوقيت وأيقونة الإخفاء بتناسق تام 🌟 -->
-        <div class="timer-container" id="timer-container">
+        <div class="timer-container" id="timer-container" style="display: none;">
             <button class="timer-toggle-btn" id="btn-timer-view" onclick="toggleTimerView()" title="إخفاء / إظهار الوقت">👁️</button>
             <div class="timer-box" id="timer-box">⏱️ <span id="timer-text">90:00</span></div>
         </div>
